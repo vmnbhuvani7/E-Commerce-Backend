@@ -33,7 +33,7 @@ app.use(express.json());
 // Routes
 app.use('/auth', authRoutes);
 app.use('/api', productRoutes);
-
+global.io = io;
 // WebSocket setup
 stockUpdates(io);
 

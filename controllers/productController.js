@@ -24,6 +24,7 @@ exports.checkout = async (req, res) => {
       const product = await Product.findById(item.id);
       product.stock -= item.quantity;
       await product.save();
+      global.io.emit('stockUpdate', { id: item.id, stock: product.stock });
     }
 
     res.json({ message: 'Checkout successful' });
